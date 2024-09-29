@@ -37,6 +37,12 @@ public class PasswordValidator {
         boolean validPassword = false;
 
         while (!validPassword) {
+            System.out.println("=====Ketentuan Password=====");
+            System.out.println("1. Memiliki panjang minimal 8 karakter.\n" +
+                    "2. Mengandung setidaknya satu karakter huruf besar (A-Z).\n" +
+                    "3. Mengandung setidaknya satu karakter huruf kecil (a-z).\n" +
+                    "4. Mengandung setidaknya satu karakter angka (0-9).\n" +
+                    "5. Mengandung setidaknya satu karakter khusus ('!', '@', '#', '$', '%', '^', '&', '*').");
             System.out.print("Masukkan password: ");
             String password = scanner.nextLine();
 

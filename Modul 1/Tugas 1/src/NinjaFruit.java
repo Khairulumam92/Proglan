@@ -14,7 +14,7 @@ public class NinjaFruit {
     public static int calculateTotalLength(List<String> words) { //menghitung jumlah huruf
         int totalLength = 0;
 
-        for (int i = 0; i <= words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) { //kesalahan looping yang menggunakan <=, logic error
             totalLength += words.get(i).length();
         }
 
@@ -27,10 +27,8 @@ public class NinjaFruit {
         }
 
         String longestWord = "";
-        for (String word : words) {
+        for (String word : words) { //condition if else tidak diperlukan, logic error
             if (word != null && word.length() > longestWord.length()) {
-                longestWord = word;
-            } else if (word != null && word.length() <= longestWord.length()) {
                 longestWord = word;
             }
         }
@@ -38,15 +36,15 @@ public class NinjaFruit {
         return longestWord;
     }
 
-    public static List<String> capitalizeWords(List<String> words) { //mengubah setiap huruf menjadi kapital
+    public static List<String> capitalizeWords(List<String> words) {
         List<String> capitalized = new ArrayList<>();
         for (String word : words) {
-            capitalized.add(word.substring(1).toUpperCase());
+            capitalized.add(word.toUpperCase()); //word.substring(1).toUpperCase() salah, mengubah huruf kedua-terakhir menjadi kapital
         }
         return capitalized;
     }
 
-    public static List<Integer> wordLengths(List<String> words) { //mengitung panjang kata
+    public static List<Integer> wordLengths(List<String> words) {
         List<Integer> lengths = new ArrayList<>();
         for (String word : words) {
             if (word != null) {
