@@ -11,7 +11,7 @@ public class NinjaFruit {
         System.out.println("Panjang masing-masing kata: " + wordLengths(buah));
     }
 
-    public static int calculateTotalLength(List<String> words) { //menghitung jumlah huruf
+    public static int calculateTotalLength(List<String> words) {
         int totalLength = 0;
 
         for (int i = 0; i < words.size(); i++) { //kesalahan looping yang menggunakan <=, logic error

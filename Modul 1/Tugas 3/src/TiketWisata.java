@@ -5,6 +5,7 @@ public class TiketWisata {
         Scanner scanner = new Scanner(System.in);
 
         // Input data dari pengguna
+        System.out.println("=====Program Pembelian Tiket=====");
         System.out.print("Masukkan Nama: ");
         String nama = scanner.nextLine();
 
@@ -26,7 +27,6 @@ public class TiketWisata {
             return;
         }
 
-        // Harga tiket
         int harga = 0;
         if (jenisTiket.equalsIgnoreCase("Reguler")) {
             if (kategoriUsia.equalsIgnoreCase("Dewasa")) {
