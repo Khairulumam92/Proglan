@@ -132,3 +132,5 @@ public class EncryptionProgramRefactored {
         return new SecretKeySpec(decodedKey, 0, decodedKey.length, AES_ALGORITHM);
     }
 }
+
+// ini lewat master yaa
