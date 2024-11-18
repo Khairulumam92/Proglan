@@ -1,33 +1,30 @@
-public class TiketPesawat {
-    private String nm;
-    private String asal;
-    private String dst;
-    private double Tiket;
-    private double disk;
+public class TiketPesawat extends Pemesanan implements Tiket {
 
-    public TiketPesawat(String nmInfo, String asal, String dst, double Tiket, double distance) {
-        this.nm = nmInfo;
-        this.asal = asal;
-        this.dst = dst;
-        this.Tiket = Tiket;
-        this.disk = disk;
+    public TiketPesawat(String nama, String asal, String tujuan, double Tiket, double diskon) {
+        super(asal, tujuan, Tiket);
     }
 
-    public double hbt() {
-        return Tiket + (Tiket * (disk / 100));
+    @Override
+    public double hitungBiayaTiket() {
+
+        return Tiket + (Tiket * (diskon / 100));
     }
 
-    public double h() {
-        return Tiket * (disk / 100);
+    @Override
+    public double hitungDiskon() {
+
+        return Tiket * (diskon / 100);
     }
 
-    public void t() {
-        System.out.println("Nama Penumpang: " + nm);
+    @Override
+    public void tampilkanInformasi() {
+        System.out.println("Nama Penumpang: " + nama);
         System.out.println("Asal: " + asal);
-        System.out.println("Tujuan: " + dst);
+        System.out.println("Tujuan: " + tujuan);
         System.out.println("Harga Tiket: " + Tiket);
-        System.out.println("Diskon: " + disk + "%");
-        System.out.println("Biaya Tiket Setelah Diskon: " + hbt();
-        System.out.println("Jumlah Diskon: " + h());
+        System.out.println("Diskon: " + diskon + "%");
+        System.out.println("Biaya Tiket Setelah Diskon: " + hitungBiayaTiket());
+        System.out.println("Jumlah Diskon: " + hitungDiskon());
     }
+
 }

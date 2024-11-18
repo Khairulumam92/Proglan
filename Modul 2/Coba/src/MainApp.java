@@ -1,4 +1,4 @@
-public class Main {
+public class MainApp {
     public static void main(String[] args) {
         Product prod = new Product("Smartphone", 699.99, 50);
         Inventory inv = new Inventory(prod, "Warehouse A");
@@ -8,4 +8,3 @@ public class Main {
         inv.showInventory();
     }
 }
-
