@@ -2,11 +2,9 @@ import os
 from docx import Document
 from docx.shared import Inches
 
-# File untuk menyimpan data pesanan
 DATA_FILE = "pesanan.txt"
 DOCX_FILE = "pesanan.docx"
 
-# Menu makanan dan minuman
 MAKANAN = [
     "Ayam Krispi", "Ayam Kremes", "Ayam Geprek", "Soto Ayam",
     "Lalapan Ayam", "Mie Ayam", "Sate Ayam", "Rendang Sapi",
@@ -15,7 +13,6 @@ MAKANAN = [
 
 MINUMAN = ["Es Cendol", "Es Teh", "Thai Tea", "Matcha Latte"]
 
-# Fungsi untuk membaca pesanan dari file
 def read_orders():
     if not os.path.exists(DATA_FILE):
         return []
@@ -23,13 +20,11 @@ def read_orders():
         lines = file.readlines()
         return [eval(line.strip()) for line in lines]
 
-# Fungsi untuk menyimpan pesanan ke file
 def save_orders(orders):
     with open(DATA_FILE, "w") as file:
         for order in orders:
             file.write(f"{order}\n")
 
-# Fungsi untuk memperbarui file .docx
 def update_docx(orders):
     doc = Document()
     doc.add_heading("Data Pesanan Restoran", level=1)
@@ -38,9 +33,9 @@ def update_docx(orders):
         doc.add_paragraph("   Pesanan:")
         for item in order["items"]:
             doc.add_paragraph(f"     - {item['name']}")
-            # Tambahkan gambar jika ada
+            
             if os.path.exists(item["image"]):
-                doc.add_picture(item["image"], width=Inches(2))  # Atur ukuran gambar
+                doc.add_picture(item["image"], width=Inches(2))
             else:
                 doc.add_paragraph("       (Gambar tidak ditemukan)")
         doc.add_paragraph(f"   Status: {order['status']}")
@@ -48,7 +43,6 @@ def update_docx(orders):
     doc.save(DOCX_FILE)
     print(f"Pesanan berhasil disimpan ke '{DOCX_FILE}'.")
 
-# Fungsi untuk menampilkan menu makanan dan minuman
 def display_menu():
     print("\n=== Menu Makanan ===")
     for i, item in enumerate(MAKANAN, 1):
@@ -57,13 +51,13 @@ def display_menu():
     for i, item in enumerate(MINUMAN, 1):
         print(f"{i}. {item}")
 
-# Fungsi untuk membuat pesanan baru
+
 def create_order():
     print("\n=== Buat Pesanan Baru ===")
     name = input("Nama Pelanggan: ")
     display_menu()
-    food_choices = input("Pilih nomor makanan (pisahkan dengan koma): ").split(",")
-    drink_choices = input("Pilih nomor minuman (pisahkan dengan koma): ").split(",")
+    food_choices = input("Pilih nomor makanan : ").split(",")
+    drink_choices = input("Pilih nomor minuman : ").split(",")
     items = []
     try:
         items += [{"name": MAKANAN[int(i.strip()) - 1], "image": input(f"Path gambar untuk {MAKANAN[int(i.strip()) - 1]}: ")} for i in food_choices if i.strip().isdigit()]
@@ -79,7 +73,6 @@ def create_order():
     update_docx(orders)
     print("Pesanan berhasil dibuat!")
 
-# Fungsi untuk membaca semua pesanan
 def read_all_orders():
     orders = read_orders()
     if not orders:
@@ -88,7 +81,6 @@ def read_all_orders():
         for i, order in enumerate(orders, 1):
             print(f"{i}. {order}")
 
-# Fungsi untuk mengupdate status pesanan
 def update_order():
     orders = read_orders()
     if not orders:
@@ -111,7 +103,6 @@ def update_order():
     except ValueError:
         print("Input tidak valid.")
 
-# Fungsi untuk menghapus pesanan
 def delete_order():
     orders = read_orders()
     if not orders:
@@ -133,7 +124,7 @@ def delete_order():
     except ValueError:
         print("Input tidak valid.")
 
-# Fungsi untuk mencari pesanan berdasarkan nama pelanggan
+
 def search_order():
     orders = read_orders()
     if not orders:
@@ -147,7 +138,6 @@ def search_order():
     else:
         print("Pesanan tidak ditemukan.")
 
-# Menu utama
 def main():
     while True:
         print("\n=== Sistem Manajemen Pesanan Restoran ===")
